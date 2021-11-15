@@ -70,6 +70,8 @@ header.page-header
                       #js-watch-toggle(data-watchable-id="#{@report.id}", data-watchable-type='Report')
                     .thread-header-actions__action
                       #js-bookmark(data-bookmarkable-id="#{@report.id}", data-bookmarkable-type='Report')
+                    .thread-header-actions__action
+                      #js-featured-entry(data-featureable-id="#{@report.id}", data-featureable-type='Report')
                   .thread-header-actions__end
                     - if @report.user_id == current_user.id
                       .thread-header-actions__action
