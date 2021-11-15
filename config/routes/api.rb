@@ -64,5 +64,6 @@ Rails.application.routes.draw do
     resources :bookmarks, only: %i(index create destroy)
     resources :events, only: %i(index)
     resources :report_templates, only: %i(create update)
+    resources :featured_entries, only: %i(index create update)
   end
 end
