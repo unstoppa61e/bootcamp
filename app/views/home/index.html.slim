@@ -44,6 +44,15 @@ header.page-header
             = render '/users/practices/completed_practices', user: current_user, completed_learnings: @completed_learnings
 
         .col-xs-12.col-xl-6.col-xxl-6
+          .thread-list.a-card
+            header.card-header.is-sm
+              h2.card-header__title
+                | 注目エントリー
+            = render partial: 'featured_entries', collection: @featured_entries, as: :featured_entry
+            / footer.thread-list__footer
+            /   .thread-list__footer-to-index
+            /     = link_to announcements_path, class: 'thread-list__footer-text-link' do
+            /       | 全ての注目エントリー
           - if (current_user.admin? || current_user.adviser?) && User.all.job_seeking.present?
             = render 'job_seeking_users', users: User.all.job_seeking
           - if current_user.total_learning_time.positive? || !current_user.mentor?
