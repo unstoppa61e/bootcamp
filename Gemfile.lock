@@ -130,7 +130,7 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
-    data_migrate (7.0.2)
+    data_migrate (8.0.0.rc2)
       activerecord (>= 5.0)
       railties (>= 5.0)
     dead_end (3.1.1)
@@ -542,7 +542,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   cocoon
   commonmarker
-  data_migrate
+  data_migrate (>= 8.0.0rc1)
   dead_end
   diffy
   discord-notifier
