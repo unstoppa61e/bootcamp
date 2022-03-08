@@ -22,11 +22,8 @@
                   = page.practice.title
               - if page.comments.any?
                 .thread-list-item-meta__item
-                  .thread-list-item-comment
-                    .thread-list-item-comment__label
-                      | コメント
-                    .thread-list-item-comment__count
-                      | （#{page.comments.size}）
+                  .a-meta
+                    | コメント（#{page.comments.size}）
 
       .thread-list-item__row
         .thread-list-item-meta
@@ -46,7 +43,10 @@
                 time.a-meta(datetime="#{page.updated_at.to_datetime}")
                   span.a-meta__label
                     | 更新
-                  | #{l page.updated_at} by
+                  span.a-meta__value
+                    | #{l page.updated_at} by
+              .thread-list-item-meta__item
+                .thread-list-item-meta__user
                   = render 'users/icon',
                           user: page.last_updated_user,
                           link_class: 'thread-list-item-meta__icon-link',

@@ -16,36 +16,36 @@
             a.thread-list-item-title__link(
               :href='question.url',
               itemprop='url'
-            ) {{ question.title }}
-    .thread-list-item__row(v-if='question.practice')
-      .thread-list-item-meta
-        .thread-list-item-meta__items
-          .thread-list-item-meta__item
-            .thread-list-item-sub-title {{ question.practice.title }}
-    .thread-list-item__row
-      .thread-list-item-meta
-        .thread-list-item-meta__items
-          .thread-list-item-meta__item
-            a.a-user-name {{ question.user.long_name }}
-          .thread-list-item-meta__item
-            time.a-meta(
-              :datetime='question.updated_at.datetime',
-              pubdate='pubdate'
-            ) {{ question.updated_at.locale }}
-          .thread-list-item-meta__item(v-if='question.answers.size > 0')
-            .thread-list-item-comment
-              .thread-list-item-comment__label
-                | 回答・コメント
-              .thread-list-item-comment__count
-                | （{{ question.answers.size }}）
+            )
+              | {{ question.title }}
+      .thread-list-item__row(v-if='question.practice')
+        .thread-list-item-meta
+          .thread-list-item-meta__items
+            .thread-list-item-meta__item
+              .thread-list-item-sub-title
+                | {{ question.practice.title }}
+      .thread-list-item__row
+        .thread-list-item-meta
+          .thread-list-item-meta__items
+            .thread-list-item-meta__item
+              a.a-user-name {{ question.user.long_name }}
+            .thread-list-item-meta__item
+              time.a-meta(
+                :datetime='question.updated_at.datetime',
+                pubdate='pubdate'
+              )
+                | {{ question.updated_at.locale }}
+            .thread-list-item-meta__item(v-if='question.answers.size > 0')
+              .a-meta
+                | 回答・コメント（{{ question.answers.size }}）
 
-    .thread-list-item__row(v-if='question.tags.length > 0')
-      .thread-list-item-tags
-        .thread-list-item-tags__label
-          i.fas.fa-tags
-        ul.thread-list-item-tags__items
-          li.thread-list-item-tags__item(v-for='tag in question.tags')
-            a.thread-list-item-tags__item-link(:href='tag.url') {{ tag.name }}
+      .thread-list-item__row(v-if='question.tags.length > 0')
+        .thread-list-item-tags
+          .thread-list-item-tags__label
+            i.fas.fa-tags
+          ul.thread-list-item-tags__items
+            li.thread-list-item-tags__item(v-for='tag in question.tags')
+              a.thread-list-item-tags__item-link(:href='tag.url') {{ tag.name }}
     .stamp.is-circle.is-solved(v-if='question.has_correct_answer')
       .stamp__content.is-icon 解
       .stamp__content.is-icon 決
