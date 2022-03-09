@@ -44,9 +44,11 @@
                   span.a-meta__label
                     | 更新
                   span.a-meta__value
-                    | #{l page.updated_at} by
+                    | #{l page.updated_at}
               .thread-list-item-meta__item
                 .thread-list-item-meta__user
+                  .a-meta
+                    | by
                   = render 'users/icon',
                           user: page.last_updated_user,
                           link_class: 'thread-list-item-meta__icon-link',
