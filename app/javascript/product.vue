@@ -63,6 +63,10 @@
               time.a-meta(v-if='product.updated_at')
                 span.a-meta__label 更新
                 | {{ product.updated_at }}
+            .thread-list-item-meta__item
+              time.a-meta
+                span.a-meta__label 経過日時
+                | {{ formatDistance(Date.parse(product.published_at_date_time), new Date(), { includeSeconds: true, addSuffix: true }) }}
 
       hr.thread-list-item__row-separator(v-if='product.comments.size > 0')
       .thread-list-item__row(v-if='product.comments.size > 0')
@@ -142,6 +146,7 @@
         )
 </template>
 <script>
+import { formatDistance } from 'date-fns'
 import ProductChecker from './product_checker'
 export default {
   components: {
@@ -186,6 +191,9 @@ export default {
       required: false,
       default: null
     }
+  },
+  data() {
+    return { formatDistance }
   },
   computed: {
     roleClass() {
