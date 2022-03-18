@@ -45,11 +45,14 @@
               time.a-meta(:datetime='page.updated_at.to_datetime')
                 span.a-meta__label
                   | 更新
-                | {{ page.updated_at }} by
-                a.thread-list-item-meta__icon-link(
-                  :href='page.last_updated_user.url'
-                )
-                  img.thread-list-item-meta__icon.a-user-icon(
+                span.a-meta__value
+                  | {{ page.updated_at }}
+            .thread-list-item-meta__item(v-if='page.last_updated_user')
+              .thread-list-item-meta__user
+                .a-meta
+                  | by
+                a(:href='page.last_updated_user.url')
+                  img.thread-list-item__user-icon.a-user-icon(
                     :title='page.last_updated_user.icon_title',
                     :alt='page.last_updated_user.icon_title',
                     :src='page.last_updated_user.avatar_url',
