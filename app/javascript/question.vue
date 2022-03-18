@@ -1,5 +1,5 @@
 <template lang="pug">
-.thread-list-item(:class='question.has_correct_answer ? "is-solved" : ""')
+.thread-list-item(:class='questionClass')
   .thread-list-item__inner
     .thread-list-item__user
       a.a-user-name(:href='question.user.url')
@@ -12,6 +12,8 @@
     .thread-list-item__rows
       .thread-list-item__row
         .thread-list-item-title
+          .thread-list-item-title__icon.is-wip(v-if='question.wip')
+            | WIP
           h1.thread-list-item-title__title(itemprop='name')
             a.thread-list-item-title__link(
               :href='question.url',
@@ -51,16 +53,37 @@
       .stamp__content.is-icon 決
 </template>
 <script>
+import dayjs from 'dayjs'
+import ja from 'dayjs/locale/ja'
+dayjs.locale(ja)
+
 export default {
   props: {
     question: { type: Object, required: true }
   },
   computed: {
+    updatedAt() {
+      return dayjs(this.question.updated_at).format('YYYY年MM月DD日(dd) HH:mm')
+    },
+    publishedAt() {
+      return dayjs(this.question.published_at).format(
+        'YYYY年MM月DD日(dd) HH:mm'
+      )
+    },
     roleClass() {
       return `is-${this.question.user.primary_role}`
     },
     daimyoClass() {
       return { 'is-daimyo': this.question.user.daimyo }
+    },
+    questionClass() {
+      if (this.question.has_correct_answer) {
+        return 'is-solved'
+      } else if (this.question.wip) {
+        return 'is-wip'
+      } else {
+        return ''
+      }
     }
   }
 }
