@@ -10,9 +10,9 @@ class API::PracticesController < API::BaseController
   def index
     @categories = params[:scoped_by_user] ? current_user.course.categories : Category
     @categories = @categories
-                  .eager_load(:practices)
+                  .eager_load(:courses, :practices)
                   .where.not(practices: { id: nil })
-                  .order('categories.position ASC, categories_practices.position ASC')
+                  .order('courses_categories.position ASC, categories_practices.position ASC')
   end
 
   def update
